@@ -1,6 +1,6 @@
 ! HOW TO COMPILE THROUGH COMMAND LINE (CMD OR TERMINAL)
 ! gfortran -c Backwarddifference.f95
-! gfortran -o backwarddiff Backwarddiference.o
+! gfortran -o backwarddiff Backwarddifference.o
 !
 ! The program is open source and can use to numeric study purpose.
 ! The program was build by Aulia Khalqillah,S.Si
