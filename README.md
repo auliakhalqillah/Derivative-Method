@@ -14,6 +14,6 @@ There are three parameters input have to set
   - Final Boundary = 10
   - Data length = 100
 
-The example result is showed in figure Derivative.png
+The results are showed in PNG files
 # Contact
 For more information, you can email to auliakhalqillah.mail@gmail.com
