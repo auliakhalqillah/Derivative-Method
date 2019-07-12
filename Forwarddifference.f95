@@ -1,6 +1,6 @@
 ! HOW TO COMPILE THROUGH COMMAND LINE (CMD OR TERMINAL)
-! gfortran -c Forwarddifference.f95
-! gfortran -o forwarddiff Forwarddiference.o
+! gfortran -c Backwarddifference.f95
+! gfortran -o backwarddiff Backwarddiference.o
 !
 ! The program is open source and can use to numeric study purpose.
 ! The program was build by Aulia Khalqillah,S.Si
@@ -14,14 +14,23 @@ REAL :: A,B,H
 REAL,DIMENSION(1000) :: F,FX,X
 
 INTEGER :: I,N
+CHARACTER(len=100) :: FMT
 
-WRITE(*,*) "INSERT INITIAL BOUNDARY:"
-read *, A
-WRITE(*,*) "INSERT FINAL BOUNDARY:"
-read *, B
-WRITE(*,*) "INSERT DATA LENGTH:"
-read*, N
+WRITE(*,*)""
+WRITE(*,*)"----------------------------------------"
+WRITE(*,*)"FORWARD DIFFERENCE METHOD - DERIVATIVE"
+WRITE(*,*)"----------------------------------------"
+WRITE(*,*) ""
+WRITE(*,"(a)",advance="no") "INSERT INITIAL BOUNDARY:"
+READ *, A
+WRITE(*,"(a)",advance="no") "INSERT FINAL BOUNDARY:"
+READ *, B
+WRITE(*,"(a)",advance="no") "INSERT DATA LENGTH:"
+READ *, N
 
+FMT = "(a12,a13,a20,a20)"
+WRITE(*,*) ""
+WRITE(*,FMT)"ITER","Data(X)","Analytic F(X)","Integration F(X)"
 OPEN(10, FILE ='ForwardOut.txt', STATUS='replace')
 ! Calculating residual between data point
 H = (B-A)/N
@@ -36,13 +45,6 @@ END DO
 DO I = 1,N
   FX(I) = (F(I+1) - F(I))/H
 END DO
-
-WRITE(*,*) "------------------------------------------------------"
-WRITE(*,*) "First Column: Index Number"
-WRITE(*,*) "Second Column: Data Series"
-WRITE(*,*) "Third Column: Original Function Result"
-WRITE(*,*) "Fourth Column: Forward Difference Function Result"
-WRITE(*,*) "------------------------------------------------------"
 
 DO I = 1,N
   WRITE(*,*) I,X(I),F(I),FX(I)
