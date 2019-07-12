@@ -13,6 +13,7 @@ There are three parameters input have to set
   - Initial Boundary = 0
   - Final Boundary = 10
   - Data length = 100
- The example result is showed in figure Derivative.png
+
+The example result is showed in figure Derivative.png
 # Contact
 For more information, you can email to auliakhalqillah.mail@gmail.com
