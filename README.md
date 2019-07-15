@@ -17,3 +17,5 @@ There are three parameters input have to set
 The results are showed in PNG files
 # Contact
 For more information, you can email to auliakhalqillah.mail@gmail.com
+# Material Source
+Steven C. Chapra and Raymond P. Canale, Numerical Methods for Engineers, Sixth Edition
