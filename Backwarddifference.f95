@@ -31,7 +31,7 @@ PROGRAM BackwardDifference
 
   FMT = "(a12,a13,a20,a20)"
   WRITE(*,*) ""
-  WRITE(*,FMT)"ITER","Data(X)","Analytic F(X)","Integration F(X)"
+  WRITE(*,FMT)"ITER","Data(X)","Raw F(X)","Integration F(X)"
   OPEN(10, FILE ='BackwardOut.txt', STATUS='replace')
   ! Calculating residual between data point
   H = (B-A)/N
