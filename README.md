@@ -14,7 +14,7 @@ There are three parameters input have to set
   - Final Boundary = 10
   - Data length = 100
 
-The results are showed in PNG files
+The results are shown in PNG files
 # Contact
 For more information, you can email to auliakhalqillah.mail@gmail.com
 # Material Source
