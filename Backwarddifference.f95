@@ -40,7 +40,7 @@ PROGRAM CenterDifference
   DO WHILE (I .le. N)
     RAWF = F(X)
     RAWFS(I) = RAWF ! Save the value
-    FX(I) = (F(X)-F(X-H))/H ! Center Difference is calculated
+    FX(I) = (F(X)-F(X-H))/H ! Backward Difference is calculated
     XS(I) = X ! Save the value
     FA(I) = 2*XS(I)  ! Analytic Calculation of First Difference
     RES(I) = abs(real(FX(I))-real(FA(I))) ! Residual Calculation
