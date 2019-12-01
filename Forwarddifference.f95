@@ -1,54 +1,58 @@
 ! HOW TO COMPILE THROUGH COMMAND LINE (CMD OR TERMINAL)
-! gfortran -c Backwarddifference.f95
-! gfortran -o backwarddiff Backwarddiference.o
+! gfortran -c Forwarddifference.f95
+! gfortran -o Forwarddifference Forwarddifference.o
 !
-! The program is open source and can use to numeric study purpose.
-! The program was build by Aulia Khalqillah,S.Si
+! The program is open source and this can be used to numerical study purpose.
+! The program was written by Aulia Khalqillah,S.Si
 !
 ! email: auliakhalqillah.mail@gmail.com
 ! ==============================================================================
-PROGRAM ForwardDifference
-IMPLICIT NONE
+PROGRAM CenterDifference
+  IMPLICIT NONE
 
-REAL :: A,B,H
-REAL,DIMENSION(1000) :: F,FX,X
+  REAL :: A,B,H,X,RAWF,F
+  REAL,DIMENSION(1000) :: RAWFS,FA,FX,XS,RES
 
-INTEGER :: I,N
-CHARACTER(len=100) :: FMT
+  INTEGER :: I,N
+  CHARACTER(len=100) :: FMT
 
-WRITE(*,*)""
-WRITE(*,*)"----------------------------------------"
-WRITE(*,*)"FORWARD DIFFERENCE METHOD - DERIVATIVE"
-WRITE(*,*)"----------------------------------------"
-WRITE(*,*) ""
-WRITE(*,"(a)",advance="no") "INSERT INITIAL BOUNDARY:"
-READ *, A
-WRITE(*,"(a)",advance="no") "INSERT FINAL BOUNDARY:"
-READ *, B
-WRITE(*,"(a)",advance="no") "INSERT DATA LENGTH:"
-READ *, N
+  WRITE(*,*)""
+  WRITE(*,*)"----------------------------------------"
+  WRITE(*,*)"FORWARD DIFFERENCE METHOD - DERIVATIVE"
+  WRITE(*,*)"----------------------------------------"
+  WRITE(*,*) ""
+  WRITE(*,"(a)",advance="no") "INSERT INITIAL BOUNDARY:"
+  READ *, A
+  WRITE(*,"(a)",advance="no") "INSERT FINAL BOUNDARY:"
+  READ *, B
+  WRITE(*,"(a)",advance="no") "INSERT DATA LENGTH:"
+  READ *, N
 
-FMT = "(a12,a13,a20,a20)"
-WRITE(*,*) ""
-WRITE(*,FMT)"ITER","Data(X)","Raw F(X)","Integration F(X)"
-OPEN(10, FILE ='ForwardOut.txt', STATUS='replace')
-! Calculating residual between data point
-H = (B-A)/N
+  FMT = "(a12,a13,a20,a20,a15,a15)"
+  WRITE(*,*) ""
+  WRITE(*,FMT)"ITER","Data(X)","Raw F(X)","Difference F(X)","Analytic F(X)","RESIDUAL"
+  OPEN(10, FILE ='FdiffOut.txt', STATUS='replace')
 
-! Calculating First Orde Forward Difference
-X(1) = A
-DO I = 1, N+1
-  F(I) = X(I)**2
-  X(I+1) = X(I) + H
-END DO
-
-DO I = 1,N
-  FX(I) = (F(I+1) - F(I))/H
-END DO
-
-DO I = 1,N
-  WRITE(*,*) I,X(I),F(I),FX(I)
-  WRITE(10,*) I,X(I),F(I),FX(I)
-END DO
-
+  ! Residual between two point is calculated
+  H = (B-A)/N
+  X = A
+  I = 1
+  DO WHILE (I .le. N)
+    RAWF = F(X)
+    RAWFS(I) = RAWF ! Save the value
+    FX(I) = (F(X+H)-F(X))/H ! Forward Difference is calculated
+    XS(I) = X ! Save the value
+    FA(I) = 2*XS(I)  ! Analytic Calculation of First Difference
+    RES(I) = abs(real(FX(I))-real(FA(I))) ! Residual Calculation
+    WRITE(*,*) I,XS(I),RAWFS(I),FX(I),FA(I),RES(I)
+    WRITE(10,*) I,XS(I),RAWFS(I),FX(I),FA(I),RES(I)
+    X = X + H
+    I = I + 1
+  END DO
 END PROGRAM
+
+REAL FUNCTION F(X)
+  IMPLICIT NONE
+  REAL :: X
+  F = X**2
+END FUNCTION
