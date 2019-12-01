@@ -2,7 +2,7 @@
 ! gfortran -c Backwarddifference.f95
 ! gfortran -o Backwarddiff Backwarddiference.o
 !
-! The program is open source and can use to numeric study purpose.
+! The program is open source and this can be used to numerical study purpose.
 ! The program was written by Aulia Khalqillah,S.Si
 !
 ! email: auliakhalqillah.mail@gmail.com
